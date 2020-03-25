@@ -69,7 +69,7 @@
         "api"
       ]
     },
-    "asyncapi-license-url": {
+    "asyncapi-info-license-url": {
       "description": "License object should include `url`.",
       "recommended": false,
       "formats": [

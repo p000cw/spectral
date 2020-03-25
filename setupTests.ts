@@ -3,7 +3,7 @@ import { RulesetExceptionCollection } from './src/types/ruleset';
 import { Dictionary } from '@stoplight/types';
 import { IRunRule, isAsyncApiv2, Rule, Spectral } from './src';
 import { readRuleset } from './src/rulesets';
-import { asyncApiRules } from './src/rulesets/asyncapi/index.json';
+import { rules as asyncApiRules } from './src/rulesets/asyncapi/index.json';
 
 export const buildRulesetExceptionCollectionFrom = (
   loc: string,
