@@ -82,6 +82,22 @@
         "function": "truthy"
       }
     },
+    "asyncapi-tags": {
+      "description": "AsyncAPI object should have non-empty `tags` array.",
+      "recommended": true,
+      "formats": [
+        "asyncapi2"
+      ],
+      "type": "style",
+      "given": "$",
+      "then": {
+        "field": "tags",
+        "function": "truthy"
+      },
+      "tags": [
+        "api"
+      ]
+    },
     "asyncapi-tags-alphabetical": {
       "description": "AsyncAPI object should have alphabetical `tags`.",
       "recommended": false,
@@ -96,7 +112,10 @@
         "functionOptions": {
           "keyedBy": "name"
         }
-      }
+      },
+      "tags": [
+        "api"
+      ]
     },
     "asyncapi-operation-description": {
       "description": "Operation `description` must be present and non-empty string.",
