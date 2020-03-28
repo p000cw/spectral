@@ -143,7 +143,10 @@
         "asyncapi2"
       ],
       "type": "style",
-      "given": "$.paths.*[?( @property === 'get' || @property === 'put' || @property === 'post' || @property === 'delete' || @property === 'options' || @property === 'head' || @property === 'patch' || @property === 'trace' )]",
+      "given": [
+        "$.channels.*.publish",
+        "$.channels.*.subscribe"
+      ],
       "then": {
         "field": "operationId",
         "function": "truthy"
