@@ -226,7 +226,7 @@
       }
     },
     "asyncapi-servers": {
-      "description": "Define at least one server.",
+      "description": "AsyncAPI object should contain a non empty `servers` object.",
       "recommended": true,
       "formats": [
         "asyncapi2"

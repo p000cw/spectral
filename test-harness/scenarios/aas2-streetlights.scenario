@@ -222,4 +222,5 @@ AsyncAPI 2.x detected
  57:15  warning  asyncapi-operation-description  Operation `description` must be present and non-empty string.
  68:15  warning  asyncapi-operation-description  Operation `description` must be present and non-empty string.
  79:15  warning  asyncapi-operation-description  Operation `description` must be present and non-empty string.
+
 ✖ 6 problems (0 errors, 6 warnings, 0 infos, 0 hints)
