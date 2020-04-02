@@ -2,6 +2,7 @@ version: 2.1
 
 orbs:
   stoplight: stoplight/cli@0.0.2
+  windows: circleci/windows@2.4.0
 
 commands:
   cached-dependencies:
@@ -49,6 +50,12 @@ commands:
           command: yarn lint
 
 jobs:
+  test-windows:
+    executor:
+      name: windows/default
+    steps:
+      - install-and-test
+
   test-node-latest:
     docker:
       - image: circleci/node:latest-browsers
@@ -107,7 +114,7 @@ jobs:
 workflows:
   commit:
     jobs:
-      # - test-node-latest TODO bring it back when circle supports node-13
+      - test-node-latest
       - test-node-12
       - test-node-10
   release:
