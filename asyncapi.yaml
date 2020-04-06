@@ -71,16 +71,6 @@ to_be_done:
     tags:
     - parameters
 
-  asyncapi-server-trailing-slash:
-    description: Server URL should not have a trailing slash.
-    recommended: true
-    type: style
-    given: "$.servers[*].url"
-    then:
-      function: pattern
-      functionOptions:
-        notMatch: "/$"
-
   asyncapi-valid-schema-example:
     description: Examples must be valid against their defined schema.
     message: "{{error}}"
@@ -339,3 +329,12 @@ done:
         schema:
           "$ref": "./schemas/asyncapi-2.0.0.json"
     
+  asyncapi-server-trailing-slash:
+    description: Server URL should not have a trailing slash.
+    recommended: true
+    type: style
+    given: "$.servers[*].url"
+    then:
+      function: pattern
+      functionOptions:
+        notMatch: "/$"
