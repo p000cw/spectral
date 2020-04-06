@@ -4,7 +4,7 @@ import { buildTestSpectralWithAsyncApiRule } from '../../../../setupTests';
 import { Spectral } from '../../../spectral';
 import { IRunRule } from '../../../types';
 
-const ruleName = 'asyncapi2-server-no-empty-variable';
+const ruleName = 'asyncapi2-server-no-empty-variable-declaration';
 let s: Spectral;
 let rule: IRunRule;
 

@@ -154,7 +154,7 @@
         }
       }
     },
-    "asyncapi2-server-no-empty-variable": {
+    "asyncapi2-server-no-empty-variable-declaration": {
       "description": "Server URL should not have empty variable substitution pattern.",
       "recommended": true,
       "formats": [
