@@ -20,20 +20,6 @@ to_be_done:
         - externalValue
         - value
     
-    
-  path-declarations-must-exist:
-    description: Path parameter declarations cannot be empty, ex.`/companies/{}` is invalid.
-    recommended: true
-    type: style
-    given: "$.paths"
-    then:
-      field: "@key"
-      function: pattern
-      functionOptions:
-        notMatch: "{}"
-    tags:
-    - given
-
   path-keys-no-trailing-slash:
     description: paths should not end with a slash.
     recommended: true
@@ -338,3 +324,17 @@ done:
       function: pattern
       functionOptions:
         notMatch: "/$"
+
+  path-declarations-must-exist:
+    description: Path parameter declarations cannot be empty, ex.`/companies/{}` is invalid.
+    recommended: true
+    type: style
+    given: "$.paths"
+    then:
+      field: "@key"
+      function: pattern
+      functionOptions:
+        notMatch: "{}"
+    tags:
+    - given
+      

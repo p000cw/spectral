@@ -1,5 +1,20 @@
 {
   "rules": {
+    "asyncapi2-channel-path-no-empty-parameter-declaration": {
+      "description": "Channel path should not have empty parameter substitution pattern.",
+      "recommended": true,
+      "formats": [
+        "asyncapi2"
+      ],
+      "type": "style",
+      "given": "$.channels.*~",
+      "then": {
+        "function": "pattern",
+        "functionOptions": {
+          "notMatch": "{}"
+        }
+      }
+    },
     "asyncapi2-info-contact-properties": {
       "description": "Contact object should have `name`, `url` and `email`.",
       "recommended": true,
@@ -253,25 +268,6 @@
 
 
 
-    "asyncapi2-path-declarations-must-exist": {
-      "description": "Path parameter declarations cannot be empty, ex.`/companies/{}` is invalid.",
-      "recommended": true,
-      "formats": [
-        "asyncapi2"
-      ],
-      "type": "style",
-      "given": "$.paths",
-      "then": {
-        "field": "@key",
-        "function": "pattern",
-        "functionOptions": {
-          "notMatch": "{}"
-        }
-      },
-      "tags": [
-        "given"
-      ]
-    },
     "asyncapi2-path-keys-no-trailing-slash": {
       "description": "paths should not end with a slash.",
       "recommended": true,
