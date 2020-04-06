@@ -19,7 +19,7 @@ describe('generate-assets', () => {
     const testCases = [
       ['oas', 'oas2-schema', 'title', 'A JSON Schema for Swagger 2.0 API.'],
       ['oas', 'oas3-schema', 'description', 'Validation schema for OpenAPI Specification 3.0.X.'],
-      ['asyncapi', 'asyncapi-schema', 'title', 'AsyncAPI 2.0.0 schema.'],
+      ['asyncapi', 'asyncapi2-schema', 'title', 'AsyncAPI 2.0.0 schema.'],
     ];
 
     it.each(testCases)(

@@ -4,7 +4,7 @@ import { buildTestSpectralWithAsyncApiRule } from '../../../../setupTests';
 import { Spectral } from '../../../spectral';
 import { IRunRule } from '../../../types';
 
-const ruleName = 'asyncapi-tags-alphabetical';
+const ruleName = 'asyncapi2-info-contact-properties';
 let s: Spectral;
 let rule: IRunRule;
 
@@ -15,7 +15,13 @@ describe(`Rule '${ruleName}'`, () => {
 
   const doc = {
     asyncapi: '2.0.0',
-    tags: [{ name: 'a tag' }, { name: 'another tag' }],
+    info: {
+      contact: {
+        name: 'stoplight',
+        url: 'stoplight.io',
+        email: 'support@stoplight.io',
+      },
+    },
   };
 
   test('validates a correct object', async () => {
@@ -24,18 +30,18 @@ describe(`Rule '${ruleName}'`, () => {
     expect(results).toEqual([]);
   });
 
-  test('return result if tags are not sorted', async () => {
+  test.each(['name', 'url', 'email'])('return result if contact.%s property is missing', async (property: string) => {
     const clone = cloneDeep(doc);
 
-    clone.tags = [{ name: 'wrongly ordered' }, ...clone.tags];
+    delete clone.info.contact[property];
 
     const results = await s.run(clone, { ignoreUnknownFormat: false });
 
     expect(results).toEqual([
       expect.objectContaining({
         code: ruleName,
-        message: 'AsyncAPI object should have alphabetical `tags`.',
-        path: ['tags'],
+        message: 'Contact object should have `name`, `url` and `email`.',
+        path: ['info', 'contact'],
         severity: rule.severity,
       }),
     ]);

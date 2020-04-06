@@ -4,7 +4,7 @@ import { buildTestSpectralWithAsyncApiRule } from '../../../../setupTests';
 import { Spectral } from '../../../spectral';
 import { IRunRule } from '../../../types';
 
-const ruleName = 'asyncapi-info-contact-properties';
+const ruleName = 'asyncapi2-tags';
 let s: Spectral;
 let rule: IRunRule;
 
@@ -15,13 +15,7 @@ describe(`Rule '${ruleName}'`, () => {
 
   const doc = {
     asyncapi: '2.0.0',
-    info: {
-      contact: {
-        name: 'stoplight',
-        url: 'stoplight.io',
-        email: 'support@stoplight.io',
-      },
-    },
+    tags: [{ name: 'one' }, { name: 'another' }],
   };
 
   test('validates a correct object', async () => {
@@ -30,18 +24,18 @@ describe(`Rule '${ruleName}'`, () => {
     expect(results).toEqual([]);
   });
 
-  test.each(['name', 'url', 'email'])('return result if contact.%s property is missing', async (property: string) => {
+  test('return result if tags property is missing', async () => {
     const clone = cloneDeep(doc);
 
-    delete clone.info.contact[property];
+    delete clone.tags;
 
     const results = await s.run(clone, { ignoreUnknownFormat: false });
 
     expect(results).toEqual([
       expect.objectContaining({
         code: ruleName,
-        message: 'Contact object should have `name`, `url` and `email`.',
-        path: ['info', 'contact'],
+        message: 'AsyncAPI object should have non-empty `tags` array.',
+        path: [],
         severity: rule.severity,
       }),
     ]);

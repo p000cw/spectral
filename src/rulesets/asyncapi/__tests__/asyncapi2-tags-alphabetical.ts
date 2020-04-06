@@ -4,7 +4,7 @@ import { buildTestSpectralWithAsyncApiRule } from '../../../../setupTests';
 import { Spectral } from '../../../spectral';
 import { IRunRule } from '../../../types';
 
-const ruleName = 'asyncapi-info-description';
+const ruleName = 'asyncapi2-tags-alphabetical';
 let s: Spectral;
 let rule: IRunRule;
 
@@ -15,9 +15,7 @@ describe(`Rule '${ruleName}'`, () => {
 
   const doc = {
     asyncapi: '2.0.0',
-    info: {
-      description: 'Very descriptive list of self explaining consecutive characters.',
-    },
+    tags: [{ name: 'a tag' }, { name: 'another tag' }],
   };
 
   test('validates a correct object', async () => {
@@ -26,18 +24,18 @@ describe(`Rule '${ruleName}'`, () => {
     expect(results).toEqual([]);
   });
 
-  test('return result if description property is missing', async () => {
+  test('return result if tags are not sorted', async () => {
     const clone = cloneDeep(doc);
 
-    delete clone.info.description;
+    clone.tags = [{ name: 'wrongly ordered' }, ...clone.tags];
 
     const results = await s.run(clone, { ignoreUnknownFormat: false });
 
     expect(results).toEqual([
       expect.objectContaining({
         code: ruleName,
-        message: 'AsyncAPI object info `description` must be present and non-empty string.',
-        path: ['info'],
+        message: 'AsyncAPI object should have alphabetical `tags`.',
+        path: ['tags'],
         severity: rule.severity,
       }),
     ]);

@@ -4,7 +4,7 @@ import { buildTestSpectralWithAsyncApiRule } from '../../../../setupTests';
 import { Spectral } from '../../../spectral';
 import { IRunRule } from '../../../types';
 
-const ruleName = 'asyncapi-tag-description';
+const ruleName = 'asyncapi2-servers';
 let s: Spectral;
 let rule: IRunRule;
 
@@ -15,12 +15,12 @@ describe(`Rule '${ruleName}'`, () => {
 
   const doc = {
     asyncapi: '2.0.0',
-    tags: [
-      {
-        name: 'a tag',
-        description: "I'm a tag.",
+    servers: {
+      production: {
+        url: 'stoplight.io',
+        protocol: 'https',
       },
-    ],
+    },
   };
 
   test('validates a correct object', async () => {
@@ -29,18 +29,36 @@ describe(`Rule '${ruleName}'`, () => {
     expect(results).toEqual([]);
   });
 
-  test('return result if description property is missing', async () => {
+  test('return result if servers property is missing', async () => {
     const clone = cloneDeep(doc);
 
-    delete clone.tags[0].description;
+    delete clone.servers;
 
     const results = await s.run(clone, { ignoreUnknownFormat: false });
 
     expect(results).toEqual([
       expect.objectContaining({
         code: ruleName,
-        message: 'Tag object should have a `description`.',
-        path: ['tags', '0'],
+        message: 'AsyncAPI object should contain a non empty `servers` object.',
+        path: [],
+        severity: rule.severity,
+      }),
+    ]);
+  });
+
+  test('return result if servers property is empty', async () => {
+    const clone = cloneDeep(doc);
+
+    delete clone.servers.production;
+    expect(clone.servers).toEqual({});
+
+    const results = await s.run(clone, { ignoreUnknownFormat: false });
+
+    expect(results).toEqual([
+      expect.objectContaining({
+        code: ruleName,
+        message: 'AsyncAPI object should contain a non empty `servers` object.',
+        path: ['servers'],
         severity: rule.severity,
       }),
     ]);

@@ -4,7 +4,7 @@ import { buildTestSpectralWithAsyncApiRule } from '../../../../setupTests';
 import { Spectral } from '../../../spectral';
 import { IRunRule } from '../../../types';
 
-const ruleName = 'asyncapi-server-not-example.com';
+const ruleName = 'asyncapi2-tag-description';
 let s: Spectral;
 let rule: IRunRule;
 
@@ -15,12 +15,12 @@ describe(`Rule '${ruleName}'`, () => {
 
   const doc = {
     asyncapi: '2.0.0',
-    servers: {
-      production: {
-        url: 'stoplight.io',
-        protocol: 'https',
+    tags: [
+      {
+        name: 'a tag',
+        description: "I'm a tag.",
       },
-    },
+    ],
   };
 
   test('validates a correct object', async () => {
@@ -29,18 +29,18 @@ describe(`Rule '${ruleName}'`, () => {
     expect(results).toEqual([]);
   });
 
-  test('return result if {server}.url property is set to `example.com`', async () => {
+  test('return result if description property is missing', async () => {
     const clone = cloneDeep(doc);
 
-    clone.servers.production.url = 'example.com';
+    delete clone.tags[0].description;
 
     const results = await s.run(clone, { ignoreUnknownFormat: false });
 
     expect(results).toEqual([
       expect.objectContaining({
         code: ruleName,
-        message: 'Server URL should not point at example.com.',
-        path: ['servers', 'production', 'url'],
+        message: 'Tag object should have a `description`.',
+        path: ['tags', '0'],
         severity: rule.severity,
       }),
     ]);

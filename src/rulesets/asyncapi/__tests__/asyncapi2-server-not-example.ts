@@ -4,7 +4,7 @@ import { buildTestSpectralWithAsyncApiRule } from '../../../../setupTests';
 import { Spectral } from '../../../spectral';
 import { IRunRule } from '../../../types';
 
-const ruleName = 'asyncapi-info-contact';
+const ruleName = 'asyncapi2-server-not-example.com';
 let s: Spectral;
 let rule: IRunRule;
 
@@ -15,11 +15,10 @@ describe(`Rule '${ruleName}'`, () => {
 
   const doc = {
     asyncapi: '2.0.0',
-    info: {
-      contact: {
-        name: 'stoplight',
+    servers: {
+      production: {
         url: 'stoplight.io',
-        email: 'support@stoplight.io',
+        protocol: 'https',
       },
     },
   };
@@ -30,18 +29,18 @@ describe(`Rule '${ruleName}'`, () => {
     expect(results).toEqual([]);
   });
 
-  test('return result if contact property is missing', async () => {
+  test('return result if {server}.url property is set to `example.com`', async () => {
     const clone = cloneDeep(doc);
 
-    delete clone.info.contact;
+    clone.servers.production.url = 'example.com';
 
     const results = await s.run(clone, { ignoreUnknownFormat: false });
 
     expect(results).toEqual([
       expect.objectContaining({
         code: ruleName,
-        message: 'Info object should contain `contact` object.',
-        path: ['info'],
+        message: 'Server URL should not point at example.com.',
+        path: ['servers', 'production', 'url'],
         severity: rule.severity,
       }),
     ]);

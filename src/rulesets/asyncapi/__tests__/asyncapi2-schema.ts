@@ -4,7 +4,7 @@ import { buildTestSpectralWithAsyncApiRule } from '../../../../setupTests';
 import { Spectral } from '../../../spectral';
 import { IRunRule } from '../../../types';
 
-const ruleName = 'asyncapi-info-license';
+const ruleName = 'asyncapi2-schema';
 let s: Spectral;
 let rule: IRunRule;
 
@@ -16,10 +16,10 @@ describe(`Rule '${ruleName}'`, () => {
   const doc = {
     asyncapi: '2.0.0',
     info: {
-      license: {
-        name: 'MIT',
-      },
+      title: 'Valid AsyncApi document',
+      version: '1.0',
     },
+    channels: {},
   };
 
   test('validates a correct object', async () => {
@@ -28,18 +28,18 @@ describe(`Rule '${ruleName}'`, () => {
     expect(results).toEqual([]);
   });
 
-  test('return result if license property is missing', async () => {
+  test('return result if channels property is missing', async () => {
     const clone = cloneDeep(doc);
 
-    delete clone.info.license;
+    delete clone.channels;
 
     const results = await s.run(clone, { ignoreUnknownFormat: false });
 
     expect(results).toEqual([
       expect.objectContaining({
         code: ruleName,
-        message: 'AsyncAPI object should contain `license` object.',
-        path: ['info'],
+        message: 'object should have required property `channels`',
+        path: [],
         severity: rule.severity,
       }),
     ]);

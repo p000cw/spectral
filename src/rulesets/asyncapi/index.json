@@ -1,6 +1,6 @@
 {
   "rules": {
-    "asyncapi-info-contact": {
+    "asyncapi2-info-contact": {
       "description": "Info object should contain `contact` object.",
       "recommended": true,
       "formats": [
@@ -13,7 +13,7 @@
         "function": "truthy"
       }
     },
-    "asyncapi-info-contact-properties": {
+    "asyncapi2-info-contact-properties": {
       "description": "Contact object should have `name`, `url` and `email`.",
       "recommended": true,
       "formats": [
@@ -37,7 +37,7 @@
         }
       ]
     },
-    "asyncapi-info-description": {
+    "asyncapi2-info-description": {
       "description": "AsyncAPI object info `description` must be present and non-empty string.",
       "recommended": true,
       "formats": [
@@ -53,7 +53,7 @@
         "api"
       ]
     },
-    "asyncapi-info-license": {
+    "asyncapi2-info-license": {
       "description": "AsyncAPI object should contain `license` object.",
       "recommended": true,
       "formats": [
@@ -69,7 +69,7 @@
         "api"
       ]
     },
-    "asyncapi-info-license-url": {
+    "asyncapi2-info-license-url": {
       "description": "License object should include `url`.",
       "recommended": false,
       "formats": [
@@ -82,7 +82,7 @@
         "function": "truthy"
       }
     },
-    "asyncapi-tags": {
+    "asyncapi2-tags": {
       "description": "AsyncAPI object should have non-empty `tags` array.",
       "recommended": true,
       "formats": [
@@ -98,7 +98,7 @@
         "api"
       ]
     },
-    "asyncapi-tags-alphabetical": {
+    "asyncapi2-tags-alphabetical": {
       "description": "AsyncAPI object should have alphabetical `tags`.",
       "recommended": false,
       "formats": [
@@ -117,7 +117,7 @@
         "api"
       ]
     },
-    "asyncapi-operation-description": {
+    "asyncapi2-operation-description": {
       "description": "Operation `description` must be present and non-empty string.",
       "recommended": true,
       "formats": [
@@ -136,7 +136,7 @@
         "operation"
       ]
     },
-    "asyncapi-operation-operationId": {
+    "asyncapi2-operation-operationId": {
       "description": "Operation should have an `operationId`.",
       "recommended": true,
       "formats": [
@@ -155,7 +155,7 @@
         "operation"
       ]
     },
-    "asyncapi-path-declarations-must-exist": {
+    "asyncapi2-path-declarations-must-exist": {
       "description": "Path parameter declarations cannot be empty, ex.`/companies/{}` is invalid.",
       "recommended": true,
       "formats": [
@@ -174,7 +174,7 @@
         "given"
       ]
     },
-    "asyncapi-path-keys-no-trailing-slash": {
+    "asyncapi2-path-keys-no-trailing-slash": {
       "description": "paths should not end with a slash.",
       "recommended": true,
       "formats": [
@@ -193,7 +193,7 @@
         "given"
       ]
     },
-    "asyncapi-path-not-include-query": {
+    "asyncapi2-path-not-include-query": {
       "description": "given keys should not include a query string.",
       "recommended": true,
       "formats": [
@@ -212,7 +212,7 @@
         "given"
       ]
     },
-    "asyncapi-tag-description": {
+    "asyncapi2-tag-description": {
       "description": "Tag object should have a `description`.",
       "recommended": false,
       "formats": [
@@ -225,7 +225,7 @@
         "function": "truthy"
       }
     },
-    "asyncapi-servers": {
+    "asyncapi2-servers": {
       "description": "AsyncAPI object should contain a non empty `servers` object.",
       "recommended": true,
       "formats": [
@@ -243,7 +243,7 @@
         }
       }
     },
-    "asyncapi-parameter-description": {
+    "asyncapi2-parameter-description": {
       "description": "Parameter objects should have a `description`.",
       "recommended": false,
       "formats": [
@@ -258,7 +258,7 @@
         "parameters"
       ]
     },
-    "asyncapi-server-not-example.com": {
+    "asyncapi2-server-not-example.com": {
       "description": "Server URL should not point at example.com.",
       "recommended": false,
       "formats": [
@@ -272,7 +272,7 @@
         }
       }
     },
-    "asyncapi-server-trailing-slash": {
+    "asyncapi2-server-trailing-slash": {
       "description": "Server URL should not have a trailing slash.",
       "recommended": true,
       "formats": [
@@ -287,7 +287,7 @@
         }
       }
     },
-    "asyncapi-valid-schema-example": {
+    "asyncapi2-valid-schema-example": {
       "description": "Examples must be valid against their defined schema.",
       "message": "{{error}}",
       "severity": 0,
@@ -305,7 +305,7 @@
         }
       }
     },
-    "asyncapi-schema": {
+    "asyncapi2-schema": {
       "description": "Validate structure of AsyncAPI v2.0.0 Specification.",
       "message": "{{error}}",
       "severity": 0,
@@ -324,7 +324,7 @@
         }
       }
     },
-    "asyncapi-unused-components-schema": {
+    "asyncapi2-unused-components-schema": {
       "description": "Potentially unused components schema has been detected.",
       "recommended": true,
       "formats": [

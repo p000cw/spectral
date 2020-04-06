@@ -4,7 +4,7 @@ import { buildTestSpectralWithAsyncApiRule } from '../../../../setupTests';
 import { Spectral } from '../../../spectral';
 import { IRunRule } from '../../../types';
 
-const ruleName = 'asyncapi-schema';
+const ruleName = 'asyncapi2-info-contact';
 let s: Spectral;
 let rule: IRunRule;
 
@@ -16,10 +16,12 @@ describe(`Rule '${ruleName}'`, () => {
   const doc = {
     asyncapi: '2.0.0',
     info: {
-      title: 'Valid AsyncApi document',
-      version: '1.0',
+      contact: {
+        name: 'stoplight',
+        url: 'stoplight.io',
+        email: 'support@stoplight.io',
+      },
     },
-    channels: {},
   };
 
   test('validates a correct object', async () => {
@@ -28,18 +30,18 @@ describe(`Rule '${ruleName}'`, () => {
     expect(results).toEqual([]);
   });
 
-  test('return result if channels property is missing', async () => {
+  test('return result if contact property is missing', async () => {
     const clone = cloneDeep(doc);
 
-    delete clone.channels;
+    delete clone.info.contact;
 
     const results = await s.run(clone, { ignoreUnknownFormat: false });
 
     expect(results).toEqual([
       expect.objectContaining({
         code: ruleName,
-        message: 'object should have required property `channels`',
-        path: [],
+        message: 'Info object should contain `contact` object.',
+        path: ['info'],
         severity: rule.severity,
       }),
     ]);

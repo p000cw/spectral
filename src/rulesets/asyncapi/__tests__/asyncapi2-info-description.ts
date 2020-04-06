@@ -4,7 +4,7 @@ import { buildTestSpectralWithAsyncApiRule } from '../../../../setupTests';
 import { Spectral } from '../../../spectral';
 import { IRunRule } from '../../../types';
 
-const ruleName = 'asyncapi-info-license-url';
+const ruleName = 'asyncapi2-info-description';
 let s: Spectral;
 let rule: IRunRule;
 
@@ -16,9 +16,7 @@ describe(`Rule '${ruleName}'`, () => {
   const doc = {
     asyncapi: '2.0.0',
     info: {
-      license: {
-        url: 'https://github.com/stoplightio/spectral/blob/develop/LICENSE',
-      },
+      description: 'Very descriptive list of self explaining consecutive characters.',
     },
   };
 
@@ -28,18 +26,18 @@ describe(`Rule '${ruleName}'`, () => {
     expect(results).toEqual([]);
   });
 
-  test('return result if url property is missing', async () => {
+  test('return result if description property is missing', async () => {
     const clone = cloneDeep(doc);
 
-    delete clone.info.license.url;
+    delete clone.info.description;
 
     const results = await s.run(clone, { ignoreUnknownFormat: false });
 
     expect(results).toEqual([
       expect.objectContaining({
         code: ruleName,
-        message: 'License object should include `url`.',
-        path: ['info', 'license'],
+        message: 'AsyncAPI object info `description` must be present and non-empty string.',
+        path: ['info'],
         severity: rule.severity,
       }),
     ]);
