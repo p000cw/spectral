@@ -154,6 +154,21 @@
         }
       }
     },
+    "asyncapi2-server-no-empty-variable": {
+      "description": "Server URL should not have empty variable substitution pattern.",
+      "recommended": true,
+      "formats": [
+        "asyncapi2"
+      ],
+      "type": "style",
+      "given": "$.servers[*].url",
+      "then": {
+        "function": "pattern",
+        "functionOptions": {
+          "notMatch": "{}"
+        }
+      }
+    },
     "asyncapi2-server-not-example.com": {
       "description": "Server URL should not point at example.com.",
       "recommended": false,
