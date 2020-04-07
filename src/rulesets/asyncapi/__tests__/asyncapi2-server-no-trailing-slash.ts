@@ -39,7 +39,7 @@ describe(`Rule '${ruleName}'`, () => {
     expect(results).toEqual([
       expect.objectContaining({
         code: ruleName,
-        message: 'Server URL should not have a trailing slash.',
+        message: 'Server URL should not end with a slash.',
         path: ['servers', 'production', 'url'],
         severity: rule.severity,
       }),

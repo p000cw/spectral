@@ -191,7 +191,7 @@
       }
     },
     "asyncapi2-server-no-trailing-slash": {
-      "description": "Server URL should end with a slash.",
+      "description": "Server URL should not end with a slash.",
       "recommended": true,
       "formats": [
         "asyncapi2"
