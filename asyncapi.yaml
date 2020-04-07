@@ -20,18 +20,6 @@ to_be_done:
         - externalValue
         - value
     
-  path-keys-no-trailing-slash:
-    description: paths should not end with a slash.
-    recommended: true
-    type: style
-    given: "$.paths"
-    then:
-      field: "@key"
-      function: pattern
-      functionOptions:
-        notMatch: ".+\\/$"
-    tags:
-    - given
 
   path-not-include-query:
     description: given keys should not include a query string.
@@ -337,4 +325,16 @@ done:
         notMatch: "{}"
     tags:
     - given
-      
+
+  path-keys-no-trailing-slash:
+    description: paths should not end with a slash.
+    recommended: true
+    type: style
+    given: "$.paths"
+    then:
+      field: "@key"
+      function: pattern
+      functionOptions:
+        notMatch: ".+\\/$"
+    tags:
+    - given

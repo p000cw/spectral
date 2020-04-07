@@ -15,6 +15,24 @@
         }
       }
     },
+    "asyncapi2-channel-path-no-trailing-slash": {
+      "description": "Channel path should not end with a slash.",
+      "recommended": true,
+      "formats": [
+        "asyncapi2"
+      ],
+      "type": "style",
+      "given": "$.channels.*~",
+      "then": {
+        "function": "pattern",
+        "functionOptions": {
+          "notMatch": ".+\\/$"
+        }
+      },
+      "tags": [
+        "given"
+      ]
+    },
     "asyncapi2-info-contact-properties": {
       "description": "Contact object should have `name`, `url` and `email`.",
       "recommended": true,
@@ -155,7 +173,7 @@
       }
     },
     "asyncapi2-server-no-trailing-slash": {
-      "description": "Server URL should not have a trailing slash.",
+      "description": "Server URL should end with a slash.",
       "recommended": true,
       "formats": [
         "asyncapi2"
@@ -268,25 +286,6 @@
 
 
 
-    "asyncapi2-path-keys-no-trailing-slash": {
-      "description": "paths should not end with a slash.",
-      "recommended": true,
-      "formats": [
-        "asyncapi2"
-      ],
-      "type": "style",
-      "given": "$.paths",
-      "then": {
-        "field": "@key",
-        "function": "pattern",
-        "functionOptions": {
-          "notMatch": ".+\\/$"
-        }
-      },
-      "tags": [
-        "given"
-      ]
-    },
     "asyncapi2-path-not-include-query": {
       "description": "given keys should not include a query string.",
       "recommended": true,
