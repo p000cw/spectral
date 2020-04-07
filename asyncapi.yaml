@@ -21,18 +21,6 @@ to_be_done:
         - value
     
 
-  path-not-include-query:
-    description: given keys should not include a query string.
-    recommended: true
-    type: style
-    given: "$.paths"
-    then:
-      field: "@key"
-      function: pattern
-      functionOptions:
-        notMatch: "\\?"
-    tags:
-    - given
 
 
   asyncapi-parameter-description:
@@ -336,5 +324,18 @@ done:
       function: pattern
       functionOptions:
         notMatch: ".+\\/$"
+    tags:
+    - given
+
+  path-not-include-query:
+    description: given keys should not include a query string.
+    recommended: true
+    type: style
+    given: "$.paths"
+    then:
+      field: "@key"
+      function: pattern
+      functionOptions:
+        notMatch: "\\?"
     tags:
     - given

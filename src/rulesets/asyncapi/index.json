@@ -33,6 +33,24 @@
         "given"
       ]
     },
+    "asyncapi2-channel-path-no-query-string": {
+      "description": "Channel path should not include a query string.",
+      "recommended": true,
+      "formats": [
+        "asyncapi2"
+      ],
+      "type": "style",
+      "given": "$.channels.*~",
+      "then": {
+        "function": "pattern",
+        "functionOptions": {
+          "notMatch": "\\?"
+        }
+      },
+      "tags": [
+        "given"
+      ]
+    },
     "asyncapi2-info-contact-properties": {
       "description": "Contact object should have `name`, `url` and `email`.",
       "recommended": true,
@@ -286,25 +304,6 @@
 
 
 
-    "asyncapi2-path-not-include-query": {
-      "description": "given keys should not include a query string.",
-      "recommended": true,
-      "formats": [
-        "asyncapi2"
-      ],
-      "type": "style",
-      "given": "$.paths",
-      "then": {
-        "field": "@key",
-        "function": "pattern",
-        "functionOptions": {
-          "notMatch": "\\?"
-        }
-      },
-      "tags": [
-        "given"
-      ]
-    },
     "asyncapi2-parameter-description": {
       "description": "Parameter objects should have a `description`.",
       "recommended": false,
